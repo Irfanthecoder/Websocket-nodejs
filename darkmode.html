@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Dark mode styles */
+        .dark-mode {
+            background-color: black;
+            color: white;
+        }
+
+        /* Light mode styles */
+        .light-mode {
+            background-color: initial; /* or any other color */
+            color: black; /* or any other color */
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <input type="text">
+    <button onclick="toggleMode()">Toggle Mode</button>
+    <script>
+        function toggleMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+            body.classList.remove('light-mode');
+
+            const darkMode = body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', darkMode)
+        }
+
+        // Check for dark mode preference on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const isDarkMode = localStorage.getItem('darkMode');
+            const body = document.body;
+            if (isDarkMode === 'true') {
+                body.classList.add('dark-mode');
+                body.classList.remove('light-mode');
+            } else {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+            }
+        });
+        
+    </script>
+</body>
+</html>
